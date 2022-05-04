@@ -2,7 +2,7 @@
 const token = localStorage.getItem("Token");
 async function getProfile() {
   const accountname = localStorage.getItem("accountname");
-  const url = `https://api.mandarin.cf/profile/${accountname}`;
+  const url = `https://mandarin.api.weniv.co.kr/profile/${accountname}`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",
@@ -73,7 +73,7 @@ async function GetSaleInfo() {
   const token = localStorage.getItem("Token");
   const accountname = localStorage.getItem("accountname");
   const saleimgdata = await fetch(
-    `https://api.mandarin.cf/product/${accountname}`,
+    `https://mandarin.api.weniv.co.kr/product/${accountname}`,
     {
       method: "GET",
       headers: {
@@ -113,7 +113,7 @@ async function GetSaleInfo() {
 async function deleteItem(itemId) {
   const token = localStorage.getItem("Token");
   const deleteSale = await fetch(
-    `https://api.mandarin.cf/product/${itemId}`,
+    `https://mandarin.api.weniv.co.kr/product/${itemId}`,
     {
       method: "DELETE",
       headers: {
@@ -156,7 +156,7 @@ async function GetList() {
   const token = localStorage.getItem("Token");
   const accountname = localStorage.getItem("accountname");
   const feedimgdata = await fetch(
-    `https://api.mandarin.cf/post/${accountname}/userpost`,
+    `https://mandarin.api.weniv.co.kr/post/${accountname}/userpost`,
     {
       method: "GET",
       headers: {
@@ -307,7 +307,7 @@ async function UploadLikes(postId) {
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
   const likedata = await fetch(
-    `https://api.mandarin.cf/post/${postId}/heart`,
+    `https://mandarin.api.weniv.co.kr/post/${postId}/heart`,
     {
       method: "POST",
       headers: {
@@ -322,7 +322,7 @@ async function UploadLikes(postId) {
 async function DeleteLikes(postId) {
   const token = localStorage.getItem("Token");
   const likedata = await fetch(
-    `https://api.mandarin.cf/post/${postId}/unheart`,
+    `https://mandarin.api.weniv.co.kr/post/${postId}/unheart`,
     {
       method: "DELETE",
       headers: {
@@ -339,7 +339,7 @@ async function GetAlbum() {
   const accountname = localStorage.getItem("accountname");
   const albumPhotoDiv = document.querySelector(".album-photos");
   const albumimgdata = await fetch(
-    `https://api.mandarin.cf/post/${accountname}/userpost`,
+    `https://mandarin.api.weniv.co.kr/post/${accountname}/userpost`,
     {
       method: "GET",
       headers: {
@@ -412,7 +412,7 @@ function editModal(postId) {
 async function deletePost(postId) {
   const token = localStorage.getItem("Token");
   const deletePost = await fetch(
-    `https://api.mandarin.cf/post/${postId}`,
+    `https://mandarin.api.weniv.co.kr/post/${postId}`,
     {
       method: "DELETE",
       headers: {

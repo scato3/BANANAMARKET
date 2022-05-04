@@ -12,7 +12,7 @@ document.querySelector(".icon-left-arrow").addEventListener("click", () => {
 
 const postId = localStorage.getItem("postId");
 async function getFeed() {
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
   const res = await fetch(url + `/post/${postId}`, {
     method: "GET",
     headers: {
@@ -109,7 +109,7 @@ async function UploadLikes(postId) {
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
   const likedata = await fetch(
-    `https://api.mandarin.cf/post/${postId}/heart`,
+    `https://mandarin.api.weniv.co.kr/post/${postId}/heart`,
     {
       method: "POST",
       headers: {
@@ -124,7 +124,7 @@ async function UploadLikes(postId) {
 async function DeleteLikes(postId) {
   const token = localStorage.getItem("Token");
   const likedata = await fetch(
-    `https://api.mandarin.cf/post/${postId}/unheart`,
+    `https://mandarin.api.weniv.co.kr/post/${postId}/unheart`,
     {
       method: "DELETE",
       headers: {
@@ -137,7 +137,7 @@ async function DeleteLikes(postId) {
 
 // 댓글 리스트업
 async function getComments() {
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
   const res = await fetch(url + `/post/${postId}/comments/?limit=100&skip=0`, {
     method: "GET",
     headers: {
@@ -231,7 +231,7 @@ getComments();
 // 댓글 작성
 
 async function writeComments() {
-  const url = `https://api.mandarin.cf/post/${postId}/comments`;
+  const url = `https://mandarin.api.weniv.co.kr/post/${postId}/comments`;
   const contentText = textInput.value;
   const res = await fetch(url, {
     method: "POST",
@@ -254,7 +254,7 @@ textButton.addEventListener("click", function () {
 // 댓글 프로필 사진
 
 async function getProfile() {
-  const url = `https://api.mandarin.cf/profile/${accountname}`;
+  const url = `https://mandarin.api.weniv.co.kr/profile/${accountname}`;
   const res = await fetch(url, {
     method: "GET",
     headers: {
@@ -274,7 +274,7 @@ getProfile();
 // 게시물 모달 신고
 
 async function reportComment(postId, commentId) {
-  const url = `https://api.mandarin.cf/post/${postId}/comments/${commentId}/report`;
+  const url = `https://mandarin.api.weniv.co.kr/post/${postId}/comments/${commentId}/report`;
   const report = await fetch(url, {
     method: "POST",
     headers: {
@@ -364,7 +364,7 @@ function reportModal(postId, commentId) {
 // 댓글 삭제
 async function deleteComment(postId, commentId) {
   const deleteComment = await fetch(
-    `https://api.mandarin.cf/post/${postId}/comments/${commentId}`,
+    `https://mandarin.api.weniv.co.kr/post/${postId}/comments/${commentId}`,
     {
       method: "DELETE",
       headers: {

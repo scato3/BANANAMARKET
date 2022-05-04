@@ -49,7 +49,7 @@ emailPwForm.addEventListener("keyup", function () {
 })
 
 async function checkEmailValid(email) {
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
   const res = await fetch(url + "/user/emailvalid", {
     method: "POST",
     headers: {
@@ -93,7 +93,7 @@ document
 async function imageUpload(files) {
   const formData = new FormData();
   formData.append("image", files[0]);
-  const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
+  const res = await fetch(`https://mandarin.api.weniv.co.kr/image/uploadfile`, {
     method: "POST",
     body: formData,
   });
@@ -105,7 +105,7 @@ async function imageUpload(files) {
 async function profileImage(e) {
   const files = e.target.files;
   const result = await imageUpload(files);
-  $profileImg.src = "https://api.mandarin.cf" + "/" + result;
+  $profileImg.src = "https://mandarin.api.weniv.co.kr" + "/" + result;
   console.log($profileImg.src);
   document.querySelector(".profile-user-image").src = $profileImg.src;
 }
@@ -120,7 +120,7 @@ async function join() {
   const intro = document.querySelector("#userIntroInput");
   const imageUrl = document.querySelector(".profile-user-image").src;
   try {
-    const res = await fetch("https://api.mandarin.cf/user", {
+    const res = await fetch("https://mandarin.api.weniv.co.kr/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

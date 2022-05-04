@@ -12,7 +12,7 @@ const myAccountname = localStorage.getItem("accountname");
 
 //내가 팔로우한 사용자와 비교하기
 async function getMyFollowing(id) {
-  const url = `https://api.mandarin.cf/profile/${myAccountname}/following?limit=100&skip=0`;
+  const url = `https://mandarin.api.weniv.co.kr/profile/${myAccountname}/following?limit=100&skip=0`;
   const res = await fetch(url, {
     method: "GET",
     headers: {
@@ -27,7 +27,7 @@ async function getMyFollowing(id) {
 async function getFollow() {
   const accountname = localStorage.getItem("accountname");
 
-  const url = `https://api.mandarin.cf/profile/${accountname}/follower?limit=100&skip=0`;
+  const url = `https://mandarin.api.weniv.co.kr/profile/${accountname}/follower?limit=100&skip=0`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",
@@ -115,7 +115,7 @@ async function getFollow() {
     async function 팔로우업로드(listAccountName) {
       console.log(listAccountName)
       const 팔로우데이터 = await fetch(
-        `https://api.mandarin.cf/profile/${listAccountName}/follow`,
+        `https://mandarin.api.weniv.co.kr/profile/${listAccountName}/follow`,
         {
           method: "POST",
           headers: {
@@ -134,7 +134,7 @@ async function getFollow() {
       console.log(listAccountName)
     
       const 팔로우취소데이터 = await fetch(
-        `https://api.mandarin.cf/profile/${listAccountName}/unfollow`,
+        `https://mandarin.api.weniv.co.kr/profile/${listAccountName}/unfollow`,
         {
           method: "DELETE",
           headers: {

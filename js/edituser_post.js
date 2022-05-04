@@ -21,7 +21,7 @@ function listener() {
 
 async function getProfile() {
     const accountname = localStorage.getItem("accountname");
-    const url = `https://api.mandarin.cf/profile/${accountname}`;
+    const url = `https://mandarin.api.weniv.co.kr/profile/${accountname}`;
     const token = localStorage.getItem("Token");
     const res = await fetch(url, {
         method: "GET",
@@ -42,7 +42,7 @@ getProfile();
 async function imageUpload(files, index) {
     const formData = new FormData();
     formData.append("image", files[index]);
-    const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
+    const res = await fetch(`https://mandarin.api.weniv.co.kr/image/uploadfile`, {
         method: "POST",
         body: formData,
     });
@@ -77,7 +77,7 @@ $image.addEventListener("change", function () {
 });
 
 async function createPost() {
-    const url = "https://api.mandarin.cf";
+    const url = "https://mandarin.api.weniv.co.kr";
     const token = localStorage.getItem("Token");
     const contentText = $content.value;
     const imageUrls = [];

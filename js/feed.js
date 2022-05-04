@@ -39,7 +39,7 @@ search_btn3.addEventListener("click", function () {
 
 const container = document.querySelector(".feed-main");
 async function getFeed() {
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
   const token = localStorage.getItem("Token");
   const res = await fetch(url + "/post/feed", {
     method: "GET",
@@ -226,7 +226,7 @@ async function UploadLikes(postId) {
   const token = localStorage.getItem("Token");
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
-  const likedata = await fetch(`https://api.mandarin.cf/post/${postId}/heart`, {
+  const likedata = await fetch(`https://mandarin.api.weniv.co.kr/post/${postId}/heart`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -239,7 +239,7 @@ async function UploadLikes(postId) {
 async function DeleteLikes(postId) {
   const token = localStorage.getItem("Token");
   const likedata = await fetch(
-    `https://api.mandarin.cf/post/${postId}/unheart`,
+    `https://mandarin.api.weniv.co.kr/post/${postId}/unheart`,
     {
       method: "DELETE",
       headers: {

@@ -7,7 +7,7 @@ const error = document.querySelector(".error-msg");
 async function login() {
   const email = document.querySelector("#login-id").value;
   const pw = document.querySelector("#login-pw").value;
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
   const loginData = {
     user: {
       email: email,

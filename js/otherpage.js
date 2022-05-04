@@ -5,7 +5,7 @@ const myId = localStorage.getItem("myId")
 const postId = localStorage.getItem("postId");
 console.log(postId);
 async function getProfile() {
-  const url = `https://api.mandarin.cf/profile/${authorAccount}`;
+  const url = `https://mandarin.api.weniv.co.kr/profile/${authorAccount}`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",
@@ -96,7 +96,7 @@ getProfile();
 //팔로우 반영 하기
 async function 팔로우업로드() {
   const 팔로우데이터 = await fetch(
-    `https://api.mandarin.cf/profile/${authorAccount}/follow`,
+    `https://mandarin.api.weniv.co.kr/profile/${authorAccount}/follow`,
     {
       method: "POST",
       headers: {
@@ -113,7 +113,7 @@ async function 팔로우업로드() {
 async function 팔로우취소() {
   const token = localStorage.getItem("Token");
   const 팔로우취소데이터 = await fetch(
-    `https://api.mandarin.cf/profile/${authorAccount}/unfollow`,
+    `https://mandarin.api.weniv.co.kr/profile/${authorAccount}/unfollow`,
     {
       method: "DELETE",
       headers: {
@@ -130,7 +130,7 @@ const sellDiv = document.querySelector(".sell-items");
 // 판매 게시글 가져오기
 async function GetSaleInfo() {
   const saleimgdata = await fetch(
-    `https://api.mandarin.cf/product/${authorAccount}`,
+    `https://mandarin.api.weniv.co.kr/product/${authorAccount}`,
     {
       method: "GET",
       headers: {
@@ -189,7 +189,7 @@ listBtn.addEventListener("click", () => {
 // 피드 가져오기 리스트형식
 async function GetList() {
   const feedimgdata = await fetch(
-    `https://api.mandarin.cf/post/${authorAccount}/userpost`,
+    `https://mandarin.api.weniv.co.kr/post/${authorAccount}/userpost`,
     {
       method: "GET",
       headers: {
@@ -331,7 +331,7 @@ async function UploadLikes(postId) {
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
   const likedata = await fetch(
-    `https://api.mandarin.cf/post/${postId}/heart`,
+    `https://mandarin.api.weniv.co.kr/post/${postId}/heart`,
     {
       method: "POST",
       headers: {
@@ -346,7 +346,7 @@ async function UploadLikes(postId) {
 async function DeleteLikes(postId) {
   const token = localStorage.getItem("Token");
   const likedata = await fetch(
-    `https://api.mandarin.cf/${postId}/unheart`,
+    `https://mandarin.api.weniv.co.kr/${postId}/unheart`,
     {
       method: "DELETE",
       headers: {
@@ -363,7 +363,7 @@ async function GetAlbum() {
   const accountname = localStorage.getItem("accountname");
   const albumPhotoDiv = document.querySelector(".album-photos");
   const albumimgdata = await fetch(
-    `https://api.mandarin.cf/post/${authorAccount}/userpost`,
+    `https://mandarin.api.weniv.co.kr/post/${authorAccount}/userpost`,
     {
       method: "GET",
       headers: {
@@ -392,7 +392,7 @@ async function GetAlbum() {
 }
 
 async function reportPost(postId) {
-  const url = `https://api.mandarin.cf/post/${postId}/report`;
+  const url = `https://mandarin.api.weniv.co.kr/post/${postId}/report`;
   const report = await fetch(url, {
     method: "POST",
     headers: {

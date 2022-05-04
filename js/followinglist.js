@@ -11,7 +11,7 @@ const token = localStorage.getItem("Token");
 async function getFollowing() {
   const accountname = localStorage.getItem("accountname");
 
-  const url = `https://api.mandarin.cf/profile/${accountname}/following?limit=100&skip=0`;
+  const url = `https://mandarin.api.weniv.co.kr/profile/${accountname}/following?limit=100&skip=0`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",
@@ -75,7 +75,7 @@ function GoToPage(accountName) {
 async function 팔로우업로드(listAccountName) {
   console.log(listAccountName)
   const 팔로우데이터 = await fetch(
-    `https://api.mandarin.cf/profile/${listAccountName}/follow`,
+    `https://mandarin.api.weniv.co.kr/profile/${listAccountName}/follow`,
     {
       method: "POST",
       headers: {
@@ -94,7 +94,7 @@ async function 팔로우취소(listAccountName) {
   console.log(listAccountName)
 
   const 팔로우취소데이터 = await fetch(
-    `https://api.mandarin.cf/profile/${listAccountName}/unfollow`,
+    `https://mandarin.api.weniv.co.kr/profile/${listAccountName}/unfollow`,
     {
       method: "DELETE",
       headers: {
