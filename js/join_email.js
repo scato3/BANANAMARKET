@@ -5,7 +5,7 @@ const $profile = document.querySelector(".profile");
 const $profileImg = document.querySelector(".profile-img");
 
 // 회원가입 메인창
-const idPwForm = document.querySelector('.cont-banana.email-pw');
+const idPwForm = document.querySelector(".cont-banana.email-pw");
 const inputId = document.querySelector("#join-id");
 const inputPw = document.querySelector("#join-pw");
 const $loginBtn = document.querySelector(".login-button.next");
@@ -16,18 +16,18 @@ const $loginBtn_b = document.querySelector(".login-button.submit");
 const userName = document.querySelector("#userNameInput");
 const userId = document.querySelector("#userIdInput");
 const intro = document.querySelector("#userIntroInput");
-const emailPwForm = document.querySelector('.cont-banana.profile');
+const emailPwForm = document.querySelector(".cont-banana.profile");
 
 $loginBtn.disabled = true;
 $loginBtn_b.disabled = true;
 
 idPwForm.addEventListener("keyup", function () {
-  if(inputId.value && inputPw.value) {
+  if (inputId.value && inputPw.value) {
     $loginBtn.disabled = false;
   } else {
     $loginBtn.disabled = true;
   }
-})
+});
 
 // function listener1() {
 //   switch (inputId.value && !inputPw.value) {
@@ -41,15 +41,15 @@ idPwForm.addEventListener("keyup", function () {
 // }
 
 emailPwForm.addEventListener("keyup", function () {
-  if(userName.value && userId.value && intro.value) {
+  if (userName.value && userId.value && intro.value) {
     $loginBtn_b.disabled = false;
   } else {
     $loginBtn_b.disabled = true;
   }
-})
+});
 
 async function checkEmailValid(email) {
-  const url = "https://mandarin.api.weniv.co.kr";
+  const url = "https://api.mandarin.weniv.co.kr";
   const res = await fetch(url + "/user/emailvalid", {
     method: "POST",
     headers: {
@@ -93,7 +93,7 @@ document
 async function imageUpload(files) {
   const formData = new FormData();
   formData.append("image", files[0]);
-  const res = await fetch(`https://mandarin.api.weniv.co.kr/image/uploadfile`, {
+  const res = await fetch(`https://api.mandarin.weniv.co.kr/image/uploadfile`, {
     method: "POST",
     body: formData,
   });
@@ -105,7 +105,7 @@ async function imageUpload(files) {
 async function profileImage(e) {
   const files = e.target.files;
   const result = await imageUpload(files);
-  $profileImg.src = "https://mandarin.api.weniv.co.kr" + "/" + result;
+  $profileImg.src = "https://api.mandarin.weniv.co.kr" + "/" + result;
   console.log($profileImg.src);
   document.querySelector(".profile-user-image").src = $profileImg.src;
 }
@@ -120,7 +120,7 @@ async function join() {
   const intro = document.querySelector("#userIntroInput");
   const imageUrl = document.querySelector(".profile-user-image").src;
   try {
-    const res = await fetch("https://mandarin.api.weniv.co.kr/user", {
+    const res = await fetch("https://api.mandarin.weniv.co.kr/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -156,6 +156,5 @@ async function join() {
   } catch (err) {
     alert(err);
   }
-  
 }
 $loginBtn_b.addEventListener("click", join);

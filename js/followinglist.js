@@ -11,7 +11,7 @@ const token = localStorage.getItem("Token");
 async function getFollowing() {
   const accountname = localStorage.getItem("accountname");
 
-  const url = `https://mandarin.api.weniv.co.kr/profile/${accountname}/following?limit=100&skip=0`;
+  const url = `https://api.mandarin.weniv.co.kr/profile/${accountname}/following?limit=100&skip=0`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",
@@ -50,32 +50,31 @@ async function getFollowing() {
     });
     document.querySelector(".container").appendChild(li);
   });
-  function followBtn(e,accountName) {
-        if (e.innerText === "팔로우") {
-          e.classList.remove("follow-btn");
-          e.classList.add("cancle-btn");
-          e.innerText = "취소";
-          팔로우업로드(accountName);
-
-        } else {
-          e.classList.remove("cancle-btn");
-          e.classList.add("follow-btn");
-          e.innerText = "팔로우";
-          팔로우취소(accountName);
-        }
-      }
+  function followBtn(e, accountName) {
+    if (e.innerText === "팔로우") {
+      e.classList.remove("follow-btn");
+      e.classList.add("cancle-btn");
+      e.innerText = "취소";
+      팔로우업로드(accountName);
+    } else {
+      e.classList.remove("cancle-btn");
+      e.classList.add("follow-btn");
+      e.innerText = "팔로우";
+      팔로우취소(accountName);
+    }
+  }
 }
 
 function GoToPage(accountName) {
-    localStorage.setItem("authorAccountName", accountName)
-    location.href = "otherpage.html"
+  localStorage.setItem("authorAccountName", accountName);
+  location.href = "otherpage.html";
 }
 
 //팔로우 반영 하기
 async function 팔로우업로드(listAccountName) {
-  console.log(listAccountName)
+  console.log(listAccountName);
   const 팔로우데이터 = await fetch(
-    `https://mandarin.api.weniv.co.kr/profile/${listAccountName}/follow`,
+    `https://api.mandarin.weniv.co.kr/profile/${listAccountName}/follow`,
     {
       method: "POST",
       headers: {
@@ -85,16 +84,16 @@ async function 팔로우업로드(listAccountName) {
     }
   );
   const data = await 팔로우데이터.json();
-  console.log('팔로우완료');
-  console.log(data)
+  console.log("팔로우완료");
+  console.log(data);
 }
 
 //팔로우 취소 하기
 async function 팔로우취소(listAccountName) {
-  console.log(listAccountName)
+  console.log(listAccountName);
 
   const 팔로우취소데이터 = await fetch(
-    `https://mandarin.api.weniv.co.kr/profile/${listAccountName}/unfollow`,
+    `https://api.mandarin.weniv.co.kr/profile/${listAccountName}/unfollow`,
     {
       method: "DELETE",
       headers: {
@@ -105,7 +104,7 @@ async function 팔로우취소(listAccountName) {
   );
   const data = await 팔로우취소데이터.json();
   console.log("팔로우취소완료");
-  console.log(data)
+  console.log(data);
 }
 
 getFollowing();

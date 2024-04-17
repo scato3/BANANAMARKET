@@ -12,7 +12,7 @@ document.querySelector(".icon-left-arrow").addEventListener("click", () => {
 
 const postId = localStorage.getItem("postId");
 async function getFeed() {
-  const url = "https://mandarin.api.weniv.co.kr";
+  const url = "https://api.mandarin.weniv.co.kr";
   const res = await fetch(url + `/post/${postId}`, {
     method: "GET",
     headers: {
@@ -68,26 +68,28 @@ async function getFeed() {
           </article>
         </section>
               `;
-    document.querySelector('.likes').addEventListener("click",() => heartClick(postId, hearted))
-  
+  document
+    .querySelector(".likes")
+    .addEventListener("click", () => heartClick(postId, hearted));
+
   heartedlist.push(hearted);
   //  좋아요 구현
   const likesBtns = document.querySelectorAll(".likes svg");
-  const likeNums = document.querySelectorAll('.heartnumber');
+  const likeNums = document.querySelectorAll(".heartnumber");
   heartedlist.forEach((list, i) => {
-    if (list === true){
+    if (list === true) {
       likesBtns[i].classList.add("likes-on");
-    } 
-  })
+    }
+  });
 
   likesBtns.forEach((likeBtn, i) => {
     likeBtn.addEventListener("click", function () {
       if (likeBtn.classList.contains("likes-on")) {
         likeBtn.classList.remove("likes-on");
-        likeNums[i].innerText = (+(likeNums[i].innerText) - 1);
+        likeNums[i].innerText = +likeNums[i].innerText - 1;
       } else {
         likeBtn.classList.add("likes-on");
-        likeNums[i].innerText = (+(likeNums[i].innerText) + 1);
+        likeNums[i].innerText = +likeNums[i].innerText + 1;
       }
     });
   });
@@ -96,10 +98,10 @@ async function getFeed() {
 getFeed();
 
 function heartClick(postId, hearted) {
-  if(hearted){
-    DeleteLikes(postId)
-  }else{
-    UploadLikes(postId)
+  if (hearted) {
+    DeleteLikes(postId);
+  } else {
+    UploadLikes(postId);
   }
 }
 
@@ -109,13 +111,13 @@ async function UploadLikes(postId) {
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
   const likedata = await fetch(
-    `https://mandarin.api.weniv.co.kr/post/${postId}/heart`,
+    `https://api.mandarin.weniv.co.kr/post/${postId}/heart`,
     {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-type": "application/json",
-      }
+      },
     }
   );
 }
@@ -124,20 +126,20 @@ async function UploadLikes(postId) {
 async function DeleteLikes(postId) {
   const token = localStorage.getItem("Token");
   const likedata = await fetch(
-    `https://mandarin.api.weniv.co.kr/post/${postId}/unheart`,
+    `https://api.mandarin.weniv.co.kr/post/${postId}/unheart`,
     {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-type": "application/json",
-      }
+      },
     }
   );
 }
 
 // 댓글 리스트업
 async function getComments() {
-  const url = "https://mandarin.api.weniv.co.kr";
+  const url = "https://api.mandarin.weniv.co.kr";
   const res = await fetch(url + `/post/${postId}/comments/?limit=100&skip=0`, {
     method: "GET",
     headers: {
@@ -231,7 +233,7 @@ getComments();
 // 댓글 작성
 
 async function writeComments() {
-  const url = `https://mandarin.api.weniv.co.kr/post/${postId}/comments`;
+  const url = `https://api.mandarin.weniv.co.kr/post/${postId}/comments`;
   const contentText = textInput.value;
   const res = await fetch(url, {
     method: "POST",
@@ -254,7 +256,7 @@ textButton.addEventListener("click", function () {
 // 댓글 프로필 사진
 
 async function getProfile() {
-  const url = `https://mandarin.api.weniv.co.kr/profile/${accountname}`;
+  const url = `https://api.mandarin.weniv.co.kr/profile/${accountname}`;
   const res = await fetch(url, {
     method: "GET",
     headers: {
@@ -274,7 +276,7 @@ getProfile();
 // 게시물 모달 신고
 
 async function reportComment(postId, commentId) {
-  const url = `https://mandarin.api.weniv.co.kr/post/${postId}/comments/${commentId}/report`;
+  const url = `https://api.mandarin.weniv.co.kr/post/${postId}/comments/${commentId}/report`;
   const report = await fetch(url, {
     method: "POST",
     headers: {
@@ -364,7 +366,7 @@ function reportModal(postId, commentId) {
 // 댓글 삭제
 async function deleteComment(postId, commentId) {
   const deleteComment = await fetch(
-    `https://mandarin.api.weniv.co.kr/post/${postId}/comments/${commentId}`,
+    `https://api.mandarin.weniv.co.kr/post/${postId}/comments/${commentId}`,
     {
       method: "DELETE",
       headers: {

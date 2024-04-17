@@ -2,7 +2,7 @@
 const token = localStorage.getItem("Token");
 async function getProfile() {
   const accountname = localStorage.getItem("accountname");
-  const url = `https://mandarin.api.weniv.co.kr/profile/${accountname}`;
+  const url = `https://api.mandarin.weniv.co.kr/profile/${accountname}`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",
@@ -112,7 +112,7 @@ async function GetSaleInfo() {
 async function deleteItem(itemId) {
   const token = localStorage.getItem("Token");
   const deleteSale = await fetch(
-    `https://mandarin.api.weniv.co.kr/product/${itemId}`,
+    `https://api.mandarin.weniv.co.kr/product/${itemId}`,
     {
       method: "DELETE",
       headers: {
@@ -155,7 +155,7 @@ async function GetList() {
   const token = localStorage.getItem("Token");
   const accountname = localStorage.getItem("accountname");
   const feedimgdata = await fetch(
-    `https://mandarin.api.weniv.co.kr/post/${accountname}/userpost`,
+    `https://api.mandarin.weniv.co.kr/post/${accountname}/userpost`,
     {
       method: "GET",
       headers: {
@@ -303,7 +303,7 @@ async function UploadLikes(postId) {
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
   const likedata = await fetch(
-    `https://mandarin.api.weniv.co.kr/post/${postId}/heart`,
+    `https://api.mandarin.weniv.co.kr/post/${postId}/heart`,
     {
       method: "POST",
       headers: {
@@ -318,7 +318,7 @@ async function UploadLikes(postId) {
 async function DeleteLikes(postId) {
   const token = localStorage.getItem("Token");
   const likedata = await fetch(
-    `https://mandarin.api.weniv.co.kr/post/${postId}/unheart`,
+    `https://api.mandarin.weniv.co.kr/post/${postId}/unheart`,
     {
       method: "DELETE",
       headers: {
@@ -335,7 +335,7 @@ async function GetAlbum() {
   const accountname = localStorage.getItem("accountname");
   const albumPhotoDiv = document.querySelector(".album-photos");
   const albumimgdata = await fetch(
-    `https://mandarin.api.weniv.co.kr/post/${accountname}/userpost`,
+    `https://api.mandarin.weniv.co.kr/post/${accountname}/userpost`,
     {
       method: "GET",
       headers: {
@@ -408,7 +408,7 @@ function editModal(postId) {
 async function deletePost(postId) {
   const token = localStorage.getItem("Token");
   const deletePost = await fetch(
-    `https://mandarin.api.weniv.co.kr/post/${postId}`,
+    `https://api.mandarin.weniv.co.kr/post/${postId}`,
     {
       method: "DELETE",
       headers: {

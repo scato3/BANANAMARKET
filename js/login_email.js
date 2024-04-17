@@ -1,13 +1,10 @@
 const join = document.querySelector(".join-email");
 const error = document.querySelector(".error-msg");
 
-
-
-
 async function login() {
   const email = document.querySelector("#login-id").value;
   const pw = document.querySelector("#login-pw").value;
-  const url = "https://mandarin.api.weniv.co.kr";
+  const url = "https://api.mandarin.weniv.co.kr";
   const loginData = {
     user: {
       email: email,
@@ -35,20 +32,24 @@ async function login() {
 }
 
 // 버튼 활성화
-const inputId = document.querySelector("#login-id")
-const inputPw = document.querySelector("#login-pw")
+const inputId = document.querySelector("#login-id");
+const inputPw = document.querySelector("#login-pw");
 const $loginBtn = document.querySelector(".login-button");
 
 $loginBtn.disabled = true;
 $loginBtn.addEventListener("click", login);
 
-inputId.addEventListener('keyup', listener );
-inputPw.addEventListener('keyup', listener );
+inputId.addEventListener("keyup", listener);
+inputPw.addEventListener("keyup", listener);
 
 function listener() {
   switch (!inputId.value || !inputPw.value) {
-      case true: $loginBtn.disabled = true; break;
-      case false: $loginBtn.disabled = false; break;
+    case true:
+      $loginBtn.disabled = true;
+      break;
+    case false:
+      $loginBtn.disabled = false;
+      break;
   }
 }
 

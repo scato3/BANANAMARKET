@@ -1,11 +1,11 @@
 const accountname = localStorage.getItem("accountname");
 const authorAccount = localStorage.getItem("authorAccountName");
 const token = localStorage.getItem("Token");
-const myId = localStorage.getItem("myId")
+const myId = localStorage.getItem("myId");
 const postId = localStorage.getItem("postId");
 console.log(postId);
 async function getProfile() {
-  const url = `https://mandarin.api.weniv.co.kr/profile/${authorAccount}`;
+  const url = `https://api.mandarin.weniv.co.kr/profile/${authorAccount}`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",
@@ -96,7 +96,7 @@ getProfile();
 //팔로우 반영 하기
 async function 팔로우업로드() {
   const 팔로우데이터 = await fetch(
-    `https://mandarin.api.weniv.co.kr/profile/${authorAccount}/follow`,
+    `https://api.mandarin.weniv.co.kr/profile/${authorAccount}/follow`,
     {
       method: "POST",
       headers: {
@@ -113,7 +113,7 @@ async function 팔로우업로드() {
 async function 팔로우취소() {
   const token = localStorage.getItem("Token");
   const 팔로우취소데이터 = await fetch(
-    `https://mandarin.api.weniv.co.kr/profile/${authorAccount}/unfollow`,
+    `https://api.mandarin.weniv.co.kr/profile/${authorAccount}/unfollow`,
     {
       method: "DELETE",
       headers: {
@@ -130,7 +130,7 @@ const sellDiv = document.querySelector(".sell-items");
 // 판매 게시글 가져오기
 async function GetSaleInfo() {
   const saleimgdata = await fetch(
-    `https://mandarin.api.weniv.co.kr/product/${authorAccount}`,
+    `https://api.mandarin.weniv.co.kr/product/${authorAccount}`,
     {
       method: "GET",
       headers: {
@@ -189,7 +189,7 @@ listBtn.addEventListener("click", () => {
 // 피드 가져오기 리스트형식
 async function GetList() {
   const feedimgdata = await fetch(
-    `https://mandarin.api.weniv.co.kr/post/${authorAccount}/userpost`,
+    `https://api.mandarin.weniv.co.kr/post/${authorAccount}/userpost`,
     {
       method: "GET",
       headers: {
@@ -276,8 +276,8 @@ async function GetList() {
     ["comments-img"].forEach((cls) => {
       feedArt
         .querySelector(`.${cls}`)
-        .addEventListener("click", () => GoToComment(postId))
-      });
+        .addEventListener("click", () => GoToComment(postId));
+    });
     listSec.appendChild(feedArt);
     heartedlist.push(hearted);
   });
@@ -308,14 +308,14 @@ async function GetList() {
   const moreBtns = document.querySelectorAll("#more");
   moreBtns.forEach((moreBtn) => {
     moreBtn.addEventListener("click", function () {
-      reportModal(postId)
+      reportModal(postId);
     });
   });
 }
 
 function GoToComment(postId) {
   localStorage.setItem("postId", postId);
-  location.href = "posting.html"
+  location.href = "posting.html";
 }
 
 function heartClick(postId, hearted) {
@@ -331,7 +331,7 @@ async function UploadLikes(postId) {
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
   const likedata = await fetch(
-    `https://mandarin.api.weniv.co.kr/post/${postId}/heart`,
+    `https://api.mandarin.weniv.co.kr/post/${postId}/heart`,
     {
       method: "POST",
       headers: {
@@ -346,7 +346,7 @@ async function UploadLikes(postId) {
 async function DeleteLikes(postId) {
   const token = localStorage.getItem("Token");
   const likedata = await fetch(
-    `https://mandarin.api.weniv.co.kr/${postId}/unheart`,
+    `https://api.mandarin.weniv.co.kr/${postId}/unheart`,
     {
       method: "DELETE",
       headers: {
@@ -363,7 +363,7 @@ async function GetAlbum() {
   const accountname = localStorage.getItem("accountname");
   const albumPhotoDiv = document.querySelector(".album-photos");
   const albumimgdata = await fetch(
-    `https://mandarin.api.weniv.co.kr/post/${authorAccount}/userpost`,
+    `https://api.mandarin.weniv.co.kr/post/${authorAccount}/userpost`,
     {
       method: "GET",
       headers: {
@@ -392,7 +392,7 @@ async function GetAlbum() {
 }
 
 async function reportPost(postId) {
-  const url = `https://mandarin.api.weniv.co.kr/post/${postId}/report`;
+  const url = `https://api.mandarin.weniv.co.kr/post/${postId}/report`;
   const report = await fetch(url, {
     method: "POST",
     headers: {
@@ -470,7 +470,7 @@ function reportModal(postId) {
   };
 
   const user_delete_close = () => {
-    reportPost(postId)
+    reportPost(postId);
     location.href = "otherpage.html";
   };
 
