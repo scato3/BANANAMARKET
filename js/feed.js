@@ -39,7 +39,7 @@ search_btn3.addEventListener("click", function () {
 
 const container = document.querySelector(".feed-main");
 async function getFeed() {
-  const url = "https://mandarin.api.weniv.co.kr";
+  const url = "https://api.mandarin.weniv.co.kr";
   const token = localStorage.getItem("Token");
   const res = await fetch(url + "/post/feed", {
     method: "GET",
@@ -226,20 +226,23 @@ async function UploadLikes(postId) {
   const token = localStorage.getItem("Token");
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
-  const likedata = await fetch(`https://mandarin.api.weniv.co.kr/post/${postId}/heart`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-type": "application/json",
-    },
-  });
+  const likedata = await fetch(
+    `https://api.mandarin.weniv.co.kr/post/${postId}/heart`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    }
+  );
 }
 
 //좋아요 취소
 async function DeleteLikes(postId) {
   const token = localStorage.getItem("Token");
   const likedata = await fetch(
-    `https://mandarin.api.weniv.co.kr/post/${postId}/unheart`,
+    `https://api.mandarin.weniv.co.kr/post/${postId}/unheart`,
     {
       method: "DELETE",
       headers: {

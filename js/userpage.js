@@ -8,7 +8,7 @@ async function getProfile() {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-type" : "application/json",
+      "Content-type": "application/json",
     },
   });
   const json = await res.json();
@@ -41,17 +41,16 @@ async function getProfile() {
   <small>followings</small>
 `;
   // 프로필수정, 상품등록버튼 클릭시 이동
-  const register = document.querySelector(".register")
-  const proEdit = document.querySelector(".proEdit")
+  const register = document.querySelector(".register");
+  const proEdit = document.querySelector(".proEdit");
   const moveTo_rg = () => {
-    location.href = "sale_post.html"
-  }
+    location.href = "sale_post.html";
+  };
   const moveTo_pe = () => {
-    location.href = "setting.html"
-  }
-  register.addEventListener("click", moveTo_rg); 
-  proEdit.addEventListener("click", moveTo_pe); 
-
+    location.href = "setting.html";
+  };
+  register.addEventListener("click", moveTo_rg);
+  proEdit.addEventListener("click", moveTo_pe);
 
   const 팔로워 = document.querySelector(".followBtn");
   const 팔로잉 = document.querySelector(".followingBtn");
@@ -73,7 +72,7 @@ async function GetSaleInfo() {
   const token = localStorage.getItem("Token");
   const accountname = localStorage.getItem("accountname");
   const saleimgdata = await fetch(
-    `https://mandarin.api.weniv.co.kr/product/${accountname}`,
+    `https://api.mandarin.weniv.co.kr/product/${accountname}`,
     {
       method: "GET",
       headers: {
@@ -150,7 +149,7 @@ listBtn.addEventListener("click", () => {
   listSec.classList.remove("hide");
 });
 
-const feedSec = document.querySelector('.home-feed');
+const feedSec = document.querySelector(".home-feed");
 // 피드 가져오기 리스트형식
 async function GetList() {
   const token = localStorage.getItem("Token");
@@ -181,7 +180,7 @@ async function GetList() {
     const year = updateAt.slice(0, 4);
     const month = updateAt.slice(5, 7);
     const date = updateAt.slice(8, 10);
- 
+
     let heartCount = 0;
     let commentCount = 0;
 
@@ -242,64 +241,61 @@ async function GetList() {
     </div>
         `
     );
-    
+
     ["likes"].forEach((cls) => {
       feedArt
         .querySelector(`.${cls}`)
-        .addEventListener("click", () => heartClick(postId, hearted))
-      });
+        .addEventListener("click", () => heartClick(postId, hearted));
+    });
     listSec.appendChild(feedArt);
     heartedlist.push(hearted);
-    
+
     ["more"].forEach((cls) => {
       feedArt
         .querySelector(`.${cls}`)
-        .addEventListener("click", () => editModal(postId))
-      });
+        .addEventListener("click", () => editModal(postId));
+    });
     ["comments-img"].forEach((cls) => {
-        feedArt
-          .querySelector(`.${cls}`)
-          .addEventListener("click", () => GoToComment(postId))
-        });
+      feedArt
+        .querySelector(`.${cls}`)
+        .addEventListener("click", () => GoToComment(postId));
+    });
   });
-  
+
   //좋아요가 있는 부분은 색이 있는 하트 보여주기
-  
+
   const likesBtns = document.querySelectorAll(".likes svg");
-  const likeNums = document.querySelectorAll('.heartnumber');
+  const likeNums = document.querySelectorAll(".heartnumber");
   heartedlist.forEach((list, i) => {
-    if (list === true){
+    if (list === true) {
       likesBtns[i].classList.add("likes-on");
-    } 
-  })
-  
+    }
+  });
+
   likesBtns.forEach((likeBtn, i) => {
     likeBtn.addEventListener("click", function () {
       if (likeBtn.classList.contains("likes-on")) {
         likeBtn.classList.remove("likes-on");
-        likeNums[i].innerText = (+(likeNums[i].innerText) - 1);
+        likeNums[i].innerText = +likeNums[i].innerText - 1;
       } else {
         likeBtn.classList.add("likes-on");
-        likeNums[i].innerText = (+(likeNums[i].innerText) + 1);
+        likeNums[i].innerText = +likeNums[i].innerText + 1;
       }
     });
   });
-
 }
 function GoToComment(postId) {
   localStorage.setItem("postId", postId);
-  location.href = "posting.html"
+  location.href = "posting.html";
 }
 
 function heartClick(postId, hearted) {
-  if(hearted){
-    DeleteLikes(postId)
-  }else{
-    UploadLikes(postId)
+  if (hearted) {
+    DeleteLikes(postId);
+  } else {
+    UploadLikes(postId);
   }
 }
-
-
 
 //좋아요 올리는 부분
 async function UploadLikes(postId) {
@@ -313,7 +309,7 @@ async function UploadLikes(postId) {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-type": "application/json",
-      }
+      },
     }
   );
 }
@@ -328,7 +324,7 @@ async function DeleteLikes(postId) {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-type": "application/json",
-      }
+      },
     }
   );
 }
@@ -368,42 +364,42 @@ async function GetAlbum() {
 }
 // 게시글 삭제 및 수정 모달
 function editModal(postId) {
-  let modalBg = document.querySelector(".modal_bg.post")
-  let modal = document.querySelector(".userpage_modal.post")
-  let user_delete = document.querySelector(".user_delete")
-  let user_edit = document.querySelector(".user_edit")
-  let modalDelete = document.querySelector(".modal_delete")
-  let cancleBtn = document.querySelector(".cancel-button")
-  let deleteBtn = document.querySelector(".delete-btn")
-  
+  let modalBg = document.querySelector(".modal_bg.post");
+  let modal = document.querySelector(".userpage_modal.post");
+  let user_delete = document.querySelector(".user_delete");
+  let user_edit = document.querySelector(".user_edit");
+  let modalDelete = document.querySelector(".modal_delete");
+  let cancleBtn = document.querySelector(".cancel-button");
+  let deleteBtn = document.querySelector(".delete-btn");
+
   const open = () => {
-    modalBg.classList.add("on")
-    modal.classList.add("on")
-  }
-  
+    modalBg.classList.add("on");
+    modal.classList.add("on");
+  };
+
   const close = () => {
-    modalBg.classList.remove("on")
-    modal.classList.remove("on")
-    modalDelete.classList.remove("on")
-  }
+    modalBg.classList.remove("on");
+    modal.classList.remove("on");
+    modalDelete.classList.remove("on");
+  };
 
   const user_delete_open = () => {
-    modalDelete.classList.add("on")
-  }
-  
+    modalDelete.classList.add("on");
+  };
+
   const user_delete_close = () => {
-    deletePost(postId)
-    location.href = "userpage.html"
-  }
-  
+    deletePost(postId);
+    location.href = "userpage.html";
+  };
+
   open();
   modalBg.addEventListener("click", close);
   user_delete.addEventListener("click", user_delete_open);
-  user_edit.addEventListener("click", function() {
-    localStorage.setItem("postId",postId)
-    location.href = "edituser_post.html"
+  user_edit.addEventListener("click", function () {
+    localStorage.setItem("postId", postId);
+    location.href = "edituser_post.html";
   });
-  cancleBtn.addEventListener("click", close)
+  cancleBtn.addEventListener("click", close);
   deleteBtn.addEventListener("click", user_delete_close);
 }
 
@@ -425,85 +421,85 @@ async function deletePost(postId) {
 
 // 로그아웃 모달창 구현
 
-let modalBg = document.querySelector(".modal_bg")
-let modal = document.querySelector(".userpage_modal")
-let logout = document.querySelector(".user_logout")
-let modalLogout = document.querySelector(".modal_logout")
-let cancleBtn = document.querySelector(".cancle-btn")
-let logoutBtn = document.querySelector(".logout-btn")
-let userSetting = document.querySelector(".user_setting")
-let dotBtn = document.querySelector(".icon-more")
+let modalBg = document.querySelector(".modal_bg");
+let modal = document.querySelector(".userpage_modal");
+let logout = document.querySelector(".user_logout");
+let modalLogout = document.querySelector(".modal_logout");
+let cancleBtn = document.querySelector(".cancle-btn");
+let logoutBtn = document.querySelector(".logout-btn");
+let userSetting = document.querySelector(".user_setting");
+let dotBtn = document.querySelector(".icon-more");
 
 const open = () => {
-  modalBg.classList.add("on")
-  modal.classList.add("on")
-}
-const close = () => { 
-  modalBg.classList.remove("on")
-  modal.classList.remove("on")
-  modalLogout.classList.remove("on")
-}
+  modalBg.classList.add("on");
+  modal.classList.add("on");
+};
+const close = () => {
+  modalBg.classList.remove("on");
+  modal.classList.remove("on");
+  modalLogout.classList.remove("on");
+};
 
 const Logout_open = () => {
-  modalLogout.classList.add("on")
-}
+  modalLogout.classList.add("on");
+};
 const Logout_close = () => {
-  location.href = "index.html"
-  localStorage.clear()
-}
+  location.href = "index.html";
+  localStorage.clear();
+};
 
 const Setting = () => {
-  location.href = "userpage.html"
-}
+  location.href = "userpage.html";
+};
 
 dotBtn.addEventListener("click", open);
 modalBg.addEventListener("click", close);
 logout.addEventListener("click", Logout_open);
 cancleBtn.addEventListener("click", close);
-logoutBtn.addEventListener("click", Logout_close)
-userSetting.addEventListener("click", Setting)
+logoutBtn.addEventListener("click", Logout_close);
+userSetting.addEventListener("click", Setting);
 
 // 판매 상품 모달
 function saleModal(itemId, itemLink) {
-  let modalBg = document.querySelector(".modal_bg.sale_post")
-  let modal = document.querySelector(".userpage_modal.sale_post")
-  let user_delete = document.querySelector(".user_delete.sale_post")
-  let user_edit = document.querySelector(".user_edit.sale_post")
-  let modalDelete = document.querySelector(".modal_salepost_delete")
-  let cancleBtn = document.querySelector(".cancel-btn")
-  let deleteBtn = document.querySelector(".delete-btn.sale_post")
-  let saleSite = document.querySelector(".sale_post_site")
+  let modalBg = document.querySelector(".modal_bg.sale_post");
+  let modal = document.querySelector(".userpage_modal.sale_post");
+  let user_delete = document.querySelector(".user_delete.sale_post");
+  let user_edit = document.querySelector(".user_edit.sale_post");
+  let modalDelete = document.querySelector(".modal_salepost_delete");
+  let cancleBtn = document.querySelector(".cancel-btn");
+  let deleteBtn = document.querySelector(".delete-btn.sale_post");
+  let saleSite = document.querySelector(".sale_post_site");
 
   const open = () => {
-    modalBg.classList.add("on")
-    modal.classList.add("on")
-  }
-  
+    modalBg.classList.add("on");
+    modal.classList.add("on");
+  };
+
   const close = () => {
-    modalBg.classList.remove("on")
-    modal.classList.remove("on")
-    modalDelete.classList.remove("on")
-  }
+    modalBg.classList.remove("on");
+    modal.classList.remove("on");
+    modalDelete.classList.remove("on");
+  };
 
   const user_delete_open = () => {
-    modalDelete.classList.add("on")
-  }
-  
+    modalDelete.classList.add("on");
+  };
+
   const user_delete_close = () => {
-    deleteItem(itemId)
-    location.href = "userpage.html"
-  }
-  
+    deleteItem(itemId);
+    location.href = "userpage.html";
+  };
+
   open();
   modalBg.addEventListener("click", close);
   user_delete.addEventListener("click", user_delete_open);
-  user_edit.addEventListener("click", function() {
-    localStorage.setItem("itemId",itemId)
-    location.href = "editsale_post.html"
+  user_edit.addEventListener("click", function () {
+    localStorage.setItem("itemId", itemId);
+    location.href = "editsale_post.html";
   });
-  cancleBtn.addEventListener("click", close)
+  cancleBtn.addEventListener("click", close);
   deleteBtn.addEventListener("click", user_delete_close);
   saleSite.addEventListener("click", function () {
-    location.href = `${itemLink}`
-  })
+    location.href = `${itemLink}`;
+  });
 }
